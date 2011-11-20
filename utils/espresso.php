@@ -10,7 +10,7 @@
 	$dontcares = explode(' ',$_POST['dontcares']);
 	
 	// create the input file
-	$fw = fopen('/Users/zmichaelov/Sites/espresso/test/temp.txt','w');
+	$fw = fopen("temp.txt",'w');
 	
 	// write the number of input variables
 	fwrite($fw, ".i $inputs\n");
@@ -38,7 +38,7 @@
 	// add end of file character
 	fwrite($fw, '.e');
 	fclose($fw);
-	$output = shell_exec("../bin/espresso ../test/temp.txt");
+	$output = shell_exec("../bin/espresso temp.txt");
 	
 	echo "<pre>$output</pre>";
 	class Espresso {

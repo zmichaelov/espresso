@@ -22,7 +22,6 @@ $(document).ready(function(){
   
 });
 
-
 function int2bin(number, bitwidth) {
 	var temp = number.toString(2);
 	while(temp.length < bitwidth) {

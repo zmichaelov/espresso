@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Espresso Web App</title>
+		<title>Espresso</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">		
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -37,7 +37,7 @@
 			  </div>
         </div>
         <div class="row">
-			<h3>Native Output</h3>
+			<h3>Output</h3>
 				<div class="span10" id="output"></div>
         </div>
       </div>
@@ -49,23 +49,4 @@
     </div> <!--container -->
 	</body>
 </html>
-<!-- 
-<?php
-	$inputs = 4;
-	$minterms = pow(2, $inputs);
-	
-	echo '<table>';
-	for($i = 0; $i < $minterms; $i++)
-	{
-		echo '<tr>';
-		echo '<th>'."$i";
-		for($j = 0; $j < $inputs; $j++)
-		{
-			echo '<th><input type="checkbox" name='."input_$j".' value='."$j".'/></th>';
-		}
-		echo '</tr>';
-	}
-	echo '</table>';
-?>
- -->
 
