@@ -13,7 +13,7 @@ $("#inputForm").submit(function(event) {
          url = $form.attr( 'action' );
  
      /* Send the data using post and put the results in a div */
-     $.post( "utils/espresso2.php", { inputs: inputs, minterms: minterms, dontcares: dontcares },
+     $.post( "utils/espresso.php", { inputs: inputs, minterms: minterms, dontcares: dontcares },
        function( data ) {
            $("#output").empty().append(data);
        }
