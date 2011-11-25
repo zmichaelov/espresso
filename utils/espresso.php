@@ -8,42 +8,39 @@
 	//convert minterms to array of numbers
 	$minterms = explode(' ', $_POST['minterms']);
 	$dontcares = explode(' ',$_POST['dontcares']);
-	
-	// create the input file
-	$fw = fopen("temp.txt",'w');
-	
-	// write the number of input variables
-	fwrite($fw, ".i $inputs\n");
-	// write number of output variables default to 1 for now
-	fwrite($fw, ".o 1\n");
+	if(sizeof($dontcares) == 1 and $dontcares[0] == ''){
+		$dontcares = array();
+	}
+	// write the number of input and output variables
+	$query_string = ".i $inputs\n.o 1\n";
 	// iterate over minterms
 	for($i = 0; $i < pow(2, $inputs); $i++) {
 		// convert minterm to its binary representation
 		$bin = str_split(int2bin($i, $inputs));
 		// write each bit with a space in between 
 		foreach($bin as $bit){
-			fwrite($fw, $bit.' ');
+			$query_string .= $bit.' ';
 		}
 		// check if i is one of the minterms
 		if(in_array($i, $minterms)){
-			fwrite($fw, "1\n");
+			//fwrite($fw, "1\n");
+			$query_string .= "1\n";
 		}
+		// check if i a dontcare
 		elseif(in_array($i, $dontcares)){
-			fwrite($fw, "-\n");
+			$query_string .= "-\n";
 		}
 		else {
-			fwrite($fw, "0\n");		
+			$query_string .= "0\n";
 		}
 	}
 	// add end of file character
-	fwrite($fw, '.e');
-	fclose($fw);
-	$output = shell_exec("../bin/espresso temp.txt");
-	
+	$query_string .= '.e';
+	echo "<pre>$query_string</pre>";
+	$tempfname = tempnam('../tmp', 'esp');
+	$temp = fopen($tempfname, 'w');
+	fwrite($temp, $query_string);
+	$output = shell_exec("../bin/espresso $tempfname");
+	fclose($temp);
 	echo "<pre>$output</pre>";
-	class Espresso {
-		
-	
-	}
-
 ?>
