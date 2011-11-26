@@ -26,20 +26,55 @@
           <h2>Espresso<small> the web-based logic minimizer</small></h2>
         </div>
         <div class="row">
-        	<h3>Inputs</h3>
-			<div class="span10">
+
+			<div class="span8">
+				<h3>Inputs</h3>
 				<form action="" id="inputForm" method="post">
-					<p>Number of input variables:</p><input type="text" name="inputs" value=""/>
-					<p>Minterms (separated by spaces):</p><input type="text" name="minterms" value=""/>
-					<p>Don't Cares (leave blank if none):</p><input type="text" name="dontcares" value=""/>
-					<input type="submit" value="Submit" />
+					<div class="clearfix">
+						<label for="inputs"># of input variables</label>
+						<div class="input">
+							<input id="inputs" type="text" name="inputs" value=""/>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="minterms">Minterms</label>
+						<div class="input">
+							<input id="minterms" type="text" name="minterms" value=""/>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="dontcares">Don't Cares</label>
+						<div class="input">
+							<input id="dontcares" type="text" name="dontcares" value=""/>
+						</div>
+					</div>					
+					<div class="row">
+						<div class="span4 offset4">
+							<input class="btn primary" type="submit" value="Submit" />
+							<button class="btn" type="reset">Reset</button>
+						</div>
+					</div>
 				</form>
 			  </div>
         </div>
         <div class="row">
-			<h3>Output</h3>
-				<div class="span10" id="output"></div>
+			<div class="span8"><h3>Standard Output</h3>
+				<div id="output""></div>
+			</div>
+			<div class="span8"><h3>MathML Output</h3>
+				<math>
+					<msub>
+						<mover><mi>x</mi><mo>&macr;</mo></mover>
+						<mn>1</mn>
+					</msub>
+				</math>
+			</div>
         </div>
+		<div class="row">
+			<div class="span16"><h3>Console</h3>
+			<textarea class="xxlarge"></textarea>
+			</div>
+		</div>
       </div>
 
       <footer>

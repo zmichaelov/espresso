@@ -4,6 +4,20 @@
 		$temp = str_repeat('0', $numbits - strlen($temp)) . $temp;
 		return $temp;
 	}
+	// parses output and outputs MathML encoding
+	
+	function getMathML($output) {
+		$lines = explode("\n", $output);
+		foreach($lines as $line){
+			$pos = strpos($line,$needle);
+			if($pos === false) {
+			 // string needle NOT found in haystack
+			}
+			else {
+			 // string needle found in haystack
+			}
+		}
+	}
 	$inputs = $_POST['inputs'];
 	//convert minterms to array of numbers
 	$minterms = explode(' ', $_POST['minterms']);
@@ -23,7 +37,6 @@
 		}
 		// check if i is one of the minterms
 		if(in_array($i, $minterms)){
-			//fwrite($fw, "1\n");
 			$query_string .= "1\n";
 		}
 		// check if i a dontcare
@@ -36,11 +49,16 @@
 	}
 	// add end of file character
 	$query_string .= '.e';
-	echo "<pre>$query_string</pre>";
+	// echo input (for debugging purposes)
+	//echo "<pre>$query_string</pre>";
+	// create temporary file for input
 	$tempfname = tempnam('../tmp', 'esp');
 	$temp = fopen($tempfname, 'w');
 	fwrite($temp, $query_string);
 	$output = shell_exec("../bin/espresso $tempfname");
+	// close temporary file
 	fclose($temp);
-	echo "<pre>$output</pre>";
+	
+	echo "<pre class=\"prettyprint\">$output</pre>";
+	 
 ?>
