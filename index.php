@@ -62,12 +62,6 @@
 				<div id="output""></div>
 			</div>
 			<div class="span8"><h3>MathML Output</h3>
-				<math>
-					<msub>
-						<mover><mi>x</mi><mo>&macr;</mo></mover>
-						<mn>1</mn>
-					</msub>
-				</math>
 			</div>
         </div>
 		<div class="row">
