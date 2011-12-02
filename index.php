@@ -2,15 +2,17 @@
 <html>
 	<head>
 		<title>Espresso</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/style.css">		
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="css/style.css" type="text/css"/>
+		<link rel="stylesheet" href="css/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript" src="js/espresso.js"></script>
+		<script type="text/javascript" src="js/prettify.js"></script>
 	</head>
 	<body>
 		<div class="topbar">
 		  <div class="fill">
-			<div class="container">
+			<div class="container-fluid">
 			  <a class="brand" href="index.php">Espresso</a>
 			  <ul class="nav">
 				<li class="active"><a href="index.php">Home</a></li>
@@ -23,7 +25,7 @@
 	<div class="container">
       <div class="content">
         <div class="page-header">
-          <h2>Espresso<small> the web-based logic minimizer</small></h2>
+          <h2>Espresso<small> Your web-based logic minimizer</small></h2>
         </div>
         <div class="row">
 
@@ -56,12 +58,17 @@
 					</div>
 				</form>
 			  </div>
+			  <div class="span8">
+					<h3>Additional Options</h3>
+			  </div>
         </div>
         <div class="row">
 			<div class="span8"><h3>Standard Output</h3>
-				<div id="output""></div>
+				<div id="output"></div>
 			</div>
-			<div class="span8"><h3>MathML Output</h3>
+			<div class="span8"><h3>Latex</h3>
+				<div id="latex_rendered"></div>
+				<div id="latex_src"></div>
 			</div>
         </div>
 		<div class="row">
