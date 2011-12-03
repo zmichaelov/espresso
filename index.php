@@ -8,11 +8,12 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript" src="js/espresso.js"></script>
 		<script type="text/javascript" src="js/prettify.js"></script>
+		<script type="text/javascript" src="js/lang-tex.js"></script>
 	</head>
-	<body>
+	<body onload="prettyPrint()">
 		<div class="topbar">
 		  <div class="fill">
-			<div class="container-fluid">
+			<div class="container">
 			  <a class="brand" href="index.php">Espresso</a>
 			  <ul class="nav">
 				<li class="active"><a href="index.php">Home</a></li>
@@ -69,6 +70,7 @@
 			<div class="span8"><h3>Latex</h3>
 				<div id="latex_rendered"></div>
 				<div id="latex_src"></div>
+				<pre class="prettyprint lang-tex">f=\bar{x}_1{x}_2+\bar{x}_1{x}_3+{x}_2{x}_3+{x}_4</pre>
 			</div>
         </div>
 		<div class="row">
