@@ -17,11 +17,10 @@ var updateOutput = function(data) {
 	       var json = JSON.parse(data);
            $("#output").empty().append(json.standard);
            $("#latex_rendered").empty().append(json.latex);
-           var src = '<pre class="prettyprint language-tex">'+json.latex+'</pre>';
-           $("#latex_src").empty().append(src);
+           //var src = '<pre class="prettyprint lang-tex">'+json.latex+'</pre>';
+           //$("#latex_src").empty().append(src);
            mathJax();
            MathJax.Hub.Typeset();
-           prettyPrint();
 };
 var submitForm = function() {
 /* attach a submit handler to the form */
