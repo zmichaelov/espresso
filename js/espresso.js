@@ -1,3 +1,4 @@
+// loads MathJax library dynamically
 var mathJax = function () {
   var script = document.createElement("script");
   script.type = "text/javascript";
@@ -8,42 +9,122 @@ var mathJax = function () {
 				 'jax: ["input/TeX","output/HTML-CSS"]' +
 			   '});' +
 			   'MathJax.Hub.Startup.onload();';
-  if (window.opera) {script.innerHTML = config}
-			   else {script.text = config}
-
+  if (window.opera) {
+  	script.innerHTML = config
+  }
+  else {
+  	script.text = config
+  }
   document.getElementsByTagName("head")[0].appendChild(script);
 };
+
+
 var updateOutput = function(data) {
-	       var json = JSON.parse(data);
-           $("#output").empty().append(json.standard);
-           $("#latex_rendered").empty().append(json.latex);
-           //var src = '<pre class="prettyprint lang-tex">'+json.latex+'</pre>';
-           //$("#latex_src").empty().append(src);
-           mathJax();
-           MathJax.Hub.Typeset();
+   var json = JSON.parse(data);
+   $("#output").empty().append(json.standard);
+   $("#latex_rendered").empty().append(json.latex);
+   var src = '<pre class="prettyprint lang-tex">'+json.latex+'</pre>';
+   // add the latex source code
+   $("#latex_rendered").append(src);
+   mathJax(); //dynamically load MathJax library if it has not already been loaded
+   MathJax.Hub.Typeset(); // refresh MathJax
 };
+
 var submitForm = function() {
-/* attach a submit handler to the form */
+	/* attach a submit handler to the form */
 	$("#inputForm").submit(function(event) {
      /* stop form from submitting normally */
      event.preventDefault(); 
          
-     /* get some values from elements on the page: */
+     /* get form input values: */
      var $form = $( this ),
-         inputs = $form.find( 'input[name="inputs"]' ).val(),
-         minterms = $form.find( 'input[name="minterms"]' ).val(),
-         dontcares = $form.find( 'input[name="dontcares"]' ).val(),        
-         url = $form.attr( 'action' );
- 
-     /* Send the data using post and put the results in a div */
-     $.post( "utils/espresso.php", { inputs: inputs, minterms: minterms, dontcares: dontcares },
-     	updateOutput
-     );
+         inputs = $form.find( 'input[id="variables"]' ).val(),
+         minterms = $form.find( 'input[id="minterms"]' ).val(),
+         dontcares = $form.find( 'input[id="dontcares"]' ).val(),        
+         url = $form.attr('action');
+	 
+	 /* Send the data using post and put the results in a div */
+	 $.post( "utils/espresso.php", { inputs: inputs, minterms: minterms, dontcares: dontcares },
+		updateOutput
+	  );
   });
 };
 
+// generic function for validating espresso inputs
+// isValid returns a boolean indication whether the inputElement is a valid input
+var validateInput = function (input, isValid, successCallback, failureCallback) {
+	if(isValid(input)){
+		successCallback();
+	}
+	else{
+		failureCallback();
+	}
+};
 
-$(document).ready(submitForm);
-// $(document).ready(function(){
-// 	  
-// });
+// checks if num is a valid integer
+var isInt = function(num) {
+	var intRegex = /^\d+$/;
+	return intRegex.test(num) && num > 0;
+};
+// checks if minterms and dontcares are valid
+
+// main entry point
+// wait until DOM has finished loading
+$(document).ready(function(){
+ 	// load submit handler
+ 	submitForm();
+	// add listener for number of minterms
+	$('input#variables').change( 
+		function() {
+			var variables = $('input#variables').val();
+			
+			$(".help-inline#variables").empty();
+			
+			validateInput(variables, 
+			// validation function
+			function(input){
+				return isInt(input);
+			},
+			// success callback
+			function(){
+				$(".help-inline#variables").empty();
+				$(".clearfix#variables").removeClass("error");
+				$(".clearfix#variables").addClass("success");
+			},
+			// failure callback
+			function() {
+				$(".clearfix#variables").addClass("error");
+				$(".clearfix#variables").removeClass("success");
+				$(".help-inline#variables").append('Enter a single non-negative integer');
+			});
+		}
+	);
+	
+	// add validation listener for minterms
+	$('#minterms').change( 
+		function() {
+			var minterms = $('input#minterms').val().split(' ');
+			
+			$("$variables_help").empty();
+			
+			validateInput(variables, 
+			// validation function
+			function(input){
+				return isInt(input);
+			},
+			// success callback
+			function(){
+				$(".help-inline").remove();
+				$("#clearfix_variables").removeClass("error");
+				$("#clearfix_variables").addClass("success");
+			},
+			// failure callback
+			function() {
+				$("#clearfix_variables").addClass("error");
+				$("#clearfix_variables").removeClass("success");
+				$("#variables_input").append('<span class="help-inline">Enter a single non-negative integer</span>');
+			});
+		}
+	);
+	
+});

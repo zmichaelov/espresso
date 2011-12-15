@@ -1,13 +1,14 @@
 <?php
+
+// Helper functions
 	// converts integer $number to binary and
-	// adds leading zeros until the total bit length
-	// is $numbits
+	// adds leading zeros until the total binary length is $numbits
 	function int2bin($number, $numbits){
 		$temp = decbin($number);
 		$temp = str_repeat('0', $numbits - strlen($temp)) . $temp;
 		return $temp;
 	}
-	// parses output and outputs Latex code
+	// parses espresso output and returns Latex code to be formatted by MathJax
 	function getTex($output) {
 		$lines = explode("\n", $output);
 		// get the number of terms in the output
@@ -38,10 +39,14 @@
 		return $math;
 	}
 	
+	/*
+		begin input processing
+	*/
 	$inputs = $_POST['inputs'];
 	//convert minterms to array of numbers
 	$minterms = explode(' ', $_POST['minterms']);
 	$dontcares = explode(' ',$_POST['dontcares']);
+	// if don't cares are blank, create a default array
 	if(sizeof($dontcares) == 1 and $dontcares[0] == ''){
 		$dontcares = array();
 	}
@@ -55,7 +60,7 @@
 		foreach($bin as $bit){
 			$query_string .= $bit.' ';
 		}
-		// check if i is one of the minterms
+		// check if i is a minterm
 		if(in_array($i, $minterms)){
 			$query_string .= "1\n";
 		}
@@ -63,6 +68,7 @@
 		elseif(in_array($i, $dontcares)){
 			$query_string .= "-\n";
 		}
+		// if neither it must be a 0
 		else {
 			$query_string .= "0\n";
 		}
@@ -71,6 +77,7 @@
 	$query_string .= '.e';
 	// echo input (for debugging purposes)
 	//echo "<pre>$query_string</pre>";
+	
 	// create temporary file for input
 	$tempfname = tempnam('../tmp', 'esp');
 	$temp = fopen($tempfname, 'w');
