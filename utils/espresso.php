@@ -9,11 +9,12 @@
 		return $temp;
 	}
 	// parses espresso output and returns Latex code to be formatted by MathJax
-	function getTex($output) {
+	function espresso_to_latex($output) {
 		$lines = explode("\n", $output);
 		// get the number of terms in the output
 		$terms = substr(strstr($lines[2], ' '), 1);
-		$math = '\(f=';
+		//$math = '\(f=';
+		$latex = 'f=';
 		for ($i = 3; $i < $terms + 3; $i++)
 		{
 			$term = strstr($lines[$i], ' ', true);
@@ -22,21 +23,21 @@
 				$num = $j+1;
 				switch($char) {
 					case '0':
-						$math .= "\bar{x}_{$num}";
+						$latex .= "\bar{x}_{$num}";
 						break;
 					case '1':
-						$math .= "{x}_{$num}";
+						$latex .= "{x}_{$num}";
 						break;
 					case '-':
 						break;
 				}
 			}
 			if($i < $terms + 2) {
-				$math .= '+';
+				$latex .= '+';
 			}
 		}
-		$math .= '\)';
-		return $math;
+		//$math .= '\)';
+		return $latex;
 	}
 	
 	/*
@@ -86,12 +87,15 @@
 	// close temporary file
 	fclose($temp);
 	
-	// Latex output
-	$tex = getTex($output);
+	// latex code
+	$latex = espresso_to_latex($output);
 	// Standard espresso text output
 	$standard = "<pre>$output</pre>";
+	// Add MathJax escape characters to latex code
+	$math = '\('.$latex.'\)';
 	// add output to an array
-	$response = array('standard' => $standard, 'latex' => $tex);
+	
+	$response = array('standard' => $standard, 'latex' => $latex, 'math' => $math);
 	// encode output in json format
 	echo json_encode($response);
 ?>

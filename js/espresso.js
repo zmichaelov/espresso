@@ -1,32 +1,10 @@
-// loads MathJax library dynamically
-var mathJax = function () {
-  var script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src  = "https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS_HTML";
-
-  var config = 'MathJax.Hub.Config({' +
-				 'extensions: ["tex2jax.js"],' +
-				 'jax: ["input/TeX","output/HTML-CSS"]' +
-			   '});' +
-			   'MathJax.Hub.Startup.onload();';
-  if (window.opera) {
-  	script.innerHTML = config
-  }
-  else {
-  	script.text = config
-  }
-  document.getElementsByTagName("head")[0].appendChild(script);
-};
-
-
 var updateOutput = function(data) {
    var json = JSON.parse(data);
    $("#output").empty().append(json.standard);
-   $("#latex_rendered").empty().append(json.latex);
+   $("#latex_rendered").empty().append(json.math);
    var src = '<pre class="prettyprint lang-tex">'+json.latex+'</pre>';
    // add the latex source code
    $("#latex_rendered").append(src);
-   mathJax(); //dynamically load MathJax library if it has not already been loaded
    MathJax.Hub.Typeset(); // refresh MathJax
 };
 
@@ -95,34 +73,7 @@ $(document).ready(function(){
 			function() {
 				$(".clearfix#variables").addClass("error");
 				$(".clearfix#variables").removeClass("success");
-				$(".help-inline#variables").append('Enter a single non-negative integer');
-			});
-		}
-	);
-	
-	// add validation listener for minterms
-	$('#minterms').change( 
-		function() {
-			var minterms = $('input#minterms').val().split(' ');
-			
-			$("$variables_help").empty();
-			
-			validateInput(variables, 
-			// validation function
-			function(input){
-				return isInt(input);
-			},
-			// success callback
-			function(){
-				$(".help-inline").remove();
-				$("#clearfix_variables").removeClass("error");
-				$("#clearfix_variables").addClass("success");
-			},
-			// failure callback
-			function() {
-				$("#clearfix_variables").addClass("error");
-				$("#clearfix_variables").removeClass("success");
-				$("#variables_input").append('<span class="help-inline">Enter a single non-negative integer</span>');
+				$(".help-inline#variables").append('Enter a single integer greater than 0');
 			});
 		}
 	);

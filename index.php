@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="css/style.css" type="text/css"/>
 		<link rel="stylesheet" href="css/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript"src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 		<script type="text/javascript" src="js/espresso.js"></script>
 		<script type="text/javascript" src="js/prettify.js"></script>
 		<script type="text/javascript" src="js/lang-tex.js"></script>
@@ -35,7 +36,7 @@
 			</div>
 			<div class="row">
 	
-				<div class="span8">
+				<div class="span16">
 					<h3>Inputs</h3>
 					<form action="" id="inputForm" method="post">
 						
