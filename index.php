@@ -48,23 +48,23 @@
 							</div>
 						</div>
 						
-						<div class="clearfix" id="clearfix_minterms">
+						<div class="clearfix" id="minterms">
 							<label for="minterms">Minterms</label>
 							<div class="input">
 								<input id="minterms" type="text" value=""/>
-								<span class="help-inline" id="minterms_help"></span>
+								<span class="help-inline" id="minterms"></span>
 							</div>
 						</div>
-						<div class="clearfix" id="clearfix_dontcares">
+						<div class="clearfix" id="dontcares">
 							<label for="dontcares">Don't Cares</label>
 							<div class="input">
 								<input id="dontcares" type="text" value=""/>
-								<span class="help-inline"></span>
+								<span class="help-inline" id="dontcares"></span>
 							</div>
 						</div>					
 						<div class="row">
 							<div class="span4 offset4">
-								<input class="btn primary" type="submit" value="Submit" />
+								<input id="submit" class="btn primary" disabled="disabled" type="submit" value="Submit" />
 								<button class="btn" type="reset">Reset</button>
 							</div>
 						</div>
@@ -84,11 +84,13 @@
 					<div id="latex_rendered"></div>
 				</div>
 			</div>
+<!-- 
 			<div class="row">
 				<div class="span16"><h3>Console</h3>
 					<textarea class="xxlarge" id="console"></textarea>
 				</div>
 			</div>
+ -->
 		  </div>
 	
 		  <footer>
