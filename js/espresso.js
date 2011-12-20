@@ -30,16 +30,6 @@ var submitForm = function() {
   });
 };
 
-// generic function for validating espresso inputs
-var validateInput = function (input, isValid, successCallback, failureCallback) {
-	if(isValid(input)){
-		successCallback();
-	}
-	else{
-		failureCallback();
-	}
-};
-
 // checks if num is a single integer
 var isInt = function(num) {
 	var intRegex = /^\d+$/;
@@ -95,7 +85,7 @@ var validationHandler = function(event) {
 		if (!isInt(temp)) {
 			$(".clearfix#minterms").addClass("error");
 			$(".clearfix#minterms").removeClass("success");
-			$(".help-inline#minterms").append('All minterms must be valid integers');
+			$(".help-inline#minterms").append('All minterms must be valid integers.\n');
 			allValid = false;			
 		}
 		
@@ -103,14 +93,14 @@ var validationHandler = function(event) {
 		if(temp >= Math.pow(2, variables)) {
 			$(".clearfix#minterms").addClass("error");
 			$(".clearfix#minterms").removeClass("success");
-			$(".help-inline#minterms").append('One of the terms is out of range of the variables');
+			$(".help-inline#minterms").append('One of the terms is out of range of the variables.\n');
 			allValid = false;
 		}
 		// check if minterm is already used in the dontcares
 		if($.inArray(temp, dontcares) > -1) {
 			$(".clearfix#minterms").addClass("error");
 			$(".clearfix#minterms").removeClass("success");
-			$(".help-inline#minterms").append('One of the minterms is already specified in dontcares');
+			$(".help-inline#minterms").append('One of the minterms is already specified in dontcares.\n');
 			allValid = false;		
 		}
 		// check for duplicates (if needed)	
@@ -129,7 +119,7 @@ var validationHandler = function(event) {
 		if (!isInt(temp)) {
 			$(".clearfix#dontcares").addClass("error");
 			$(".clearfix#dontcares").removeClass("success");
-			$(".help-inline#dontcares").append('All dontcares must be valid integers');
+			$(".help-inline#dontcares").append('All dontcares must be valid integers.\n');
 			allValid = false;			
 		}
 		
@@ -137,14 +127,14 @@ var validationHandler = function(event) {
 		if(temp >= Math.pow(2, variables)) {
 			$(".clearfix#dontcares").addClass("error");
 			$(".clearfix#dontcares").removeClass("success");
-			$(".help-inline#dontcares").append('One of the terms is out of range of the variables');
+			$(".help-inline#dontcares").append('One of the terms is out of range of the variables.\n');
 			allValid = false;
 		}
 		// check if minterm is already used in the dontcares
 		if($.inArray(temp, minterms) > -1) {
 			$(".clearfix#dontcares").addClass("error");
 			$(".clearfix#dontcares").removeClass("success");
-			$(".help-inline#dontcares").append('One of the dontcares is already specified in minterms');
+			$(".help-inline#dontcares").append('One of the dontcares is already specified in minterms.\n');
 			allValid = false;		
 		}
 		// check for duplicates (if needed)	
