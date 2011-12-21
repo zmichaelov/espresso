@@ -51,6 +51,7 @@ var validationHandler = function (event) {
 	$(".help-inline#variables").empty();
 	$(".help-inline#minterms").empty();
 	$(".help-inline#dontcares").empty();
+	$("#alert-bar").empty();
 	
 	/* variables validation */
 	// check if the input is empty first
@@ -179,9 +180,18 @@ var getErrorMessage = function (args) {
 	args.sort(function (a, b) {
 		return a - b;
 	});
-	return '<div id="alert" class="alert-message error fade in span8" data-alert="alert" >'+
+	var div = "";
+	if(args.length == 1){
+		div = '<div id="alert" class="alert-message error fade in span8" data-alert="alert" >'+
 			'<a class="close" href="#">&times;</a>'+
-			'<p>Term(s)<strong> ' + args.join(', ') + '</strong> has already been specified</p></div>';
+			'<p>'+ args.join(', ') + ' is specified as both a minterm and a don\'t care</p></div>';
+	}
+	else {
+		div = '<div id="alert" class="alert-message error fade in span8" data-alert="alert" >'+
+			'<a class="close" href="#">&times;</a>'+
+			'<p>'+ args.join(', ') + ' are specified as both minterms and don\'t cares</p></div>';
+	}
+	return div;
 };
 var enableSubmit = function () {
 	$('input#submit').removeAttr('disabled');
