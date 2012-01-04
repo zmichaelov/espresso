@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
 		<link rel="stylesheet" href="css/style.css" type="text/css"/>
 		<link rel="stylesheet" href="css/prettify.css" type="text/css"/>
+		<link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript"src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 		<script type="text/javascript" src="js/espresso.js"></script>
@@ -23,8 +24,7 @@
 				<h2>Espresso<small> Your web-based logic minimizer</small></h2>
 				<small><a href="#" data-controls-modal="about-modal" data-backdrop="true" >About</a></small>
 			</div>
-			<div id="alert-bar" class="row">
-			</div>
+			<div id="alert-bar" class="row"></div>
 			<div class="row">
 	
 				<div class="span16">
@@ -34,7 +34,7 @@
 						<div class="clearfix" id="variables">
 							<label for="variables"># of variables</label>
 							<div class="input" id="variables">
-								<input id="variables" type="text" value=""/>
+								<input id="variables" type="text" class="span2" value=""/>
 								<span class="help-inline" id="variables"></span>
 							</div>
 						</div>
@@ -89,9 +89,9 @@
  -->
 		  </div>
 	
-		  <footer>
+		<footer>
 			<p>&copy; Zach Michaelov 2011</p>
-		  </footer>
+		</footer>
 	
 		</div> <!--container -->
 
