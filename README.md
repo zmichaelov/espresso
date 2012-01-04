@@ -1,7 +1,6 @@
 Espresso Web App
 ================
 © Zach Michaelov, 2011
-
 About
 -----
 Espresso is a web-frontend for the ESPRESSO logic minimization tool originally developed at IBM.
@@ -24,15 +23,16 @@ Usage
 Installation
 ------------
 To run your own instance of Espresso:
-1. Download the source code from https://github.com/zmichaelov/espresso to your web server's directory.
-For most *nix based Apache installations this will be somewhere under /var/www/.
-2. Download the ESPRESSO source code from ftp://ftp.cs.man.ac.uk/pub/amulet/balsa/other-software/espresso-ab-1.0.tar.gz
-3. Extract the archive. Then,
-cd espresso-ab-1.0/
-./configure
-make
-4. Copy the espresso Unix executable under espresso-ab-1.0/src to espresso/bin
-5. Point your web browser to the web app's index.php (espresso/index.php)
+
+1.  Download the source code from https://github.com/zmichaelov/espresso to your web server's directory.
+    For most *nix based Apache installations this will be somewhere under /var/www/.
+2.  Download the ESPRESSO source code from ftp://ftp.cs.man.ac.uk/pub/amulet/balsa/other-software/espresso-ab-1.0.tar.gz
+3.  Extract the archive. Then,
+    cd espresso-ab-1.0/
+    ./configure
+    make
+4.  Copy the espresso Unix executable under espresso-ab-1.0/src to espresso/bin
+5.  Point your web browser to the web app's index.php (espresso/index.php)
 
 Coming Soon
 -----------
