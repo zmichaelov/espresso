@@ -47,6 +47,8 @@ var validationHandler = function (event) {
         duplicates = [],
         invalids = [],
         outofranges = [],
+        invalids_dc = [],
+        outofranges_dc = [],
         allValid = true;
 
     
@@ -131,7 +133,9 @@ var validationHandler = function (event) {
         if (!isInt(temp)) {
             $(".clearfix#dontcares").addClass("error");
             $(".clearfix#dontcares").removeClass("success");
-            $(".help-inline#dontcares").append('Don\'t cares must be valid integers.\n');
+            if($.inArray(temp,invalids_dc) < 0) {
+                invalids_dc.push(temp);            
+            }
             allValid = false;           
         }
         
@@ -139,7 +143,9 @@ var validationHandler = function (event) {
         else if(temp >= Math.pow(2, variables)) {
             $(".clearfix#dontcares").addClass("error");
             $(".clearfix#dontcares").removeClass("success");
-            $(".help-inline#dontcares").append(temp+' is out of range.\n');
+            if($.inArray(temp,outofranges_dc) < 0) {
+                outofranges_dc.push(temp);         
+            }
             allValid = false;
         }
         // check if minterm is already used in the dontcares
@@ -155,14 +161,14 @@ var validationHandler = function (event) {
     } // end dontcares validation
     
     /* Error message generation */
-    
+    /* Minterms Error Messages */
     // check for duplicate entries in minterms and don't cares
     if(duplicates.length > 0) {
         if($('#alert-bar').is(':empty')) {
             $("#alert-bar").append(getDuplicatesErrorMessage(duplicates));
         }
         else {
-            $("#alert-bar").alert()
+            $("#alert-bar").alert();
         }
     }
     else {
@@ -182,6 +188,24 @@ var validationHandler = function (event) {
     }
     else {
         $(".help-inline#minterms").removeClass("range");
+    }
+    
+    /* Don't Cares Error Messages */
+    
+    //check for terms that are not valid integers
+    if(invalids_dc.length > 0) {
+        $(".help-inline#dontcares").append(getInvalidsErrorMessage(invalids_dc));    
+    }
+    else {
+        $(".help-inline#dontcares").removeClass("invalids");
+    }
+
+    //check for terms that are out of range given the number of inputs
+    if(outofranges_dc.length > 0) {
+        $(".help-inline#dontcares").append(getRangeErrorMessage(outofranges_dc));    
+    }
+    else {
+        $(".help-inline#dontcares").removeClass("range");
     }
     /* Check if everything is ok to submit */
     
