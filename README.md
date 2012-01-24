@@ -18,8 +18,8 @@ Features
 Usage
 -----
 1. Enter the number of logic variables
-2. Enter the minterms separated by spaces (e.g. 0 2 5 7)
-3. Enter don't cares separated by spaces (leave blank if none)
+2. Enter the minterms separated by spaces or commas (e.g. 0 2 5 7 or 0, 2, 5, 7)
+3. Enter don't cares separated by spaces or commas (leave blank if none)
 
 Installation
 ------------

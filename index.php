@@ -9,7 +9,7 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript"src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 		<!--<script type="text/javascript" src="js/min.js">-->
-		<script type="text/javascript" src="js/espresso.js">
+		<script type="text/javascript" src="js/espresso.js"></script>
 		<script type="text/javascript" src="js/bootstrap-modal.js"></script>
 		<script type="text/javascript" src="js/bootstrap-alerts.js"></script>	
 	</head>
@@ -102,7 +102,13 @@
 			</div>
 			<div class="modal-body">
 				<p>Espresso is a web-frontend for the ESPRESSO logic minimization tool originally developed at IBM.</p>
-				<p>You can read more about it at the following links:</p>
+				<p>To use Espresso:
+				<ul>
+                    <li>Enter the number of logic variables</li>
+                    <li>Enter the minterms separated by spaces or commas (e.g. 0 2 5 7 or 0, 2, 5, 7)</li>
+                    <li>Enter don't cares separated by spaces or commas (leave blank if none)</li>
+                </ul>
+				<p>You can read more about Espresso at the following links:</p>
 				<ul>
 					<li><a href="http://en.wikipedia.org/wiki/Espresso_heuristic_logic_minimizer">Wikipedia</a></li>
 					<li><a href="http://diamond.gem.valpo.edu/~dhart/ece110/espresso/tutorial.html">Tutorial</a></li>
