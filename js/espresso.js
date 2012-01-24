@@ -40,14 +40,15 @@ var validationHandler = function (event) {
     
     // get variables from each form element
     var variables = $('input#variables').val(),
-        minterms = $('input#minterms').val().split(' '),
-        dontcares = $('input#dontcares').val().split(' '),
+        minterms = $('input#minterms').val().replace(/\,/g,'').split(' '),
+        dontcares = $('input#dontcares').val().replace(/\,/g,'').split(' '),
         temp = "",
         i = 0,
         duplicates = [],
         invalids = [],
         outofranges = [],
         allValid = true;
+
     
     // clear all in-line help text
     $(".help-inline#variables").empty();
@@ -167,21 +168,21 @@ var validationHandler = function (event) {
     else {
         $("#alert-bar").empty();
     }
-// check for terms that are not valid integers
-//     if(invalids.length > 0) {
-//         $("#alert-bar").append(getInvalidsErrorMessage(duplicates));      
-//     }
-//     else {
-//         $("#alert-bar").empty();
-//     }
+    //check for terms that are not valid integers
+    if(invalids.length > 0) {
+        $(".help-inline#minterms").append(getInvalidsErrorMessage(invalids));    
+    }
+    else {
+        $(".help-inline#minterms").removeClass("invalids");
+    }
 
-// check for terms that are out of range given the number of inputs
-//     if(outofranges.length > 0) {
-//         $("#alert-bar").append(getRangeErrorMessage(outofranges));      
-//     }
-//     else {
-//         $("#alert-bar").empty();
-//     }       
+    //check for terms that are out of range given the number of inputs
+    if(outofranges.length > 0) {
+        $(".help-inline#minterms").append(getRangeErrorMessage(outofranges));    
+    }
+    else {
+        $(".help-inline#minterms").removeClass("range");
+    }
     /* Check if everything is ok to submit */
     
     if (allValid) {
@@ -205,7 +206,35 @@ var validationHandler = function (event) {
         disableSubmit();
     }
 };
-
+// generates error message for invalid entries
+var getInvalidsErrorMessage = function (args) {
+    // sort the input array in ascending order numerically
+    args.sort(function (a, b) {
+        return a - b;
+    });
+    var message = "";
+    if(args.length == 1){
+        message = '<p class="invalids">'+ args.join(', ') + ' is not a valid integer</p>';
+    }
+    else {
+        message = '<p class="invalids">'+ args.join(', ') + ' are not valid integers</p>';
+    }
+    return message;
+};
+var getRangeErrorMessage = function (args) {
+    // sort the input array in ascending order numerically
+    args.sort(function (a, b) {
+        return a - b;
+    });
+    var message = "";
+    if(args.length == 1){
+        message = '<p class="range">'+ args.join(', ') + ' is out of range</p>';
+    }
+    else {
+        message = '<p class="range">'+ args.join(', ') + ' are out of range</p>';
+    }
+    return message;
+};
 // generates error message for duplicate entries
 var getDuplicatesErrorMessage = function (args) {
     // sort the input array in ascending order numerically

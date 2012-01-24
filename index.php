@@ -8,11 +8,10 @@
 		<link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript"src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-		<script type="text/javascript" src="js/espresso.js"></script>
-		<script type="text/javascript" src="js/prettify.js"></script>
-		<script type="text/javascript" src="js/lang-tex.js"></script>
+		<!--<script type="text/javascript" src="js/min.js">-->
+		<script type="text/javascript" src="js/espresso.js">
 		<script type="text/javascript" src="js/bootstrap-modal.js"></script>
-		<script type="text/javascript" src="js/bootstrap-alerts.js"></script>		
+		<script type="text/javascript" src="js/bootstrap-alerts.js"></script>	
 	</head>
 	<body onload="prettyPrint()">
 		<div class="topbar">
