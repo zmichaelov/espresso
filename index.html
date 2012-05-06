@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Espresso by zmichaelov</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Espresso</h1>
+        <p>A web frontend for the Espresso logic minimization program</p>
+        <p class="view"><a href="https://github.com/zmichaelov/espresso">View the Project on GitHub <small>zmichaelov/espresso</small></a></p>
+        <ul>
+          <li><a href="https://github.com/zmichaelov/espresso/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/zmichaelov/espresso/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/zmichaelov/espresso">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Espresso Web App</h1>
+
+<p>© Zach Michaelov, 2011</p>
+
+<h2>About</h2>
+
+<p>Espresso is a web-frontend for the ESPRESSO logic minimization tool originally developed at IBM.
+You can read more about it at the following links:</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Espresso_heuristic_logic_minimizer">http://en.wikipedia.org/wiki/Espresso_heuristic_logic_minimizer</a></li>
+<li><a href="http://diamond.gem.valpo.edu/%7Edhart/ece110/espresso/tutorial.html">http://diamond.gem.valpo.edu/~dhart/ece110/espresso/tutorial.html</a></li>
+</ul><h2>Features</h2>
+
+<ul>
+<li>Client-side input validation and error-checking</li>
+<li>Standard ESPRESSO and LaTeX output</li>
+</ul><h2>Usage</h2>
+
+<ol>
+<li>Enter the number of logic variables</li>
+<li>Enter the minterms separated by spaces or commas (e.g. 0 2 5 7 or 0, 2, 5, 7)</li>
+<li>Enter don't cares separated by spaces or commas (leave blank if none)</li>
+</ol><h2>Installation</h2>
+
+<p>To run your own instance of Espresso:</p>
+
+<ol>
+<li> Download the source code from <a href="https://github.com/zmichaelov/espresso">https://github.com/zmichaelov/espresso</a> to your web server's directory.
+For most *nix-based Apache installations this will be somewhere under /var/www/.</li>
+<li> Download the ESPRESSO source code from <a>ftp://ftp.cs.man.ac.uk/pub/amulet/balsa/other-software/espresso-ab-1.0.tar.gz</a>
+</li>
+<li>
+<p>Extract the archive. Then,</p>
+
+<pre><code>cd espresso-ab-1.0/
+./configure
+make    
+</code></pre>
+</li>
+<li><p>Copy the espresso *nix executable under espresso-ab-1.0/src to espresso/bin</p></li>
+<li><p>Point your web browser to the web app's index.php (espresso/index.php)</p></li>
+</ol><h2>Coming Soon</h2>
+
+<ul>
+<li>Maxterm minimization</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/zmichaelov">zmichaelov</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
