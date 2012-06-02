@@ -64,11 +64,11 @@ var validationHandler = function (event) {
         // check if the number of variables is a single integer greater than 0
         if (isInt(variables) && variables > 0) {
             $(".help-inline#variables").empty();
-            $(".clearfix#variables").removeClass("error");
-            $(".clearfix#variables").addClass("success");
+            $(".control-group#variables").removeClass("error");
+            $(".control-group#variables").addClass("success");
         } else {
-            $(".clearfix#variables").addClass("error");
-            $(".clearfix#variables").removeClass("success");
+            $(".control-group#variables").addClass("error");
+            $(".control-group#variables").removeClass("success");
             $(".help-inline#variables").append('Enter a single integer greater than 0');
             
             // disable the submit button again          
@@ -90,8 +90,8 @@ var validationHandler = function (event) {
         
         // check if minterm is a valid integer
         if (!isInt(temp)) {
-            $(".clearfix#minterms").addClass("error");
-            $(".clearfix#minterms").removeClass("success");
+            $(".control-group#minterms").addClass("error");
+            $(".control-group#minterms").removeClass("success");
             if($.inArray(temp,invalids) < 0) {
                 invalids.push(temp);            
             }
@@ -101,8 +101,8 @@ var validationHandler = function (event) {
         
         // check if the minterm is outside the range given by the number of variables
         else if(temp >= Math.pow(2, variables)) {
-            $(".clearfix#minterms").addClass("error");
-            $(".clearfix#minterms").removeClass("success");
+            $(".control-group#minterms").addClass("error");
+            $(".control-group#minterms").removeClass("success");
             if($.inArray(temp,outofranges) < 0) {
                 outofranges.push(temp);         
             }
@@ -111,8 +111,8 @@ var validationHandler = function (event) {
         }
         // check if minterm is already used in the dontcares
         else if($.inArray(temp, dontcares) > -1) {
-            $(".clearfix#minterms").addClass("error");
-            $(".clearfix#minterms").removeClass("success");
+            $(".control-group#minterms").addClass("error");
+            $(".control-group#minterms").removeClass("success");
             if($.inArray(temp,duplicates) < 0) {
                 duplicates.push(temp);          
             }
@@ -131,8 +131,8 @@ var validationHandler = function (event) {
         
         // check if dontcare is a valid integer
         if (!isInt(temp)) {
-            $(".clearfix#dontcares").addClass("error");
-            $(".clearfix#dontcares").removeClass("success");
+            $(".control-group#dontcares").addClass("error");
+            $(".control-group#dontcares").removeClass("success");
             if($.inArray(temp,invalids_dc) < 0) {
                 invalids_dc.push(temp);            
             }
@@ -141,8 +141,8 @@ var validationHandler = function (event) {
         
         // check if the dontcare is outside the range given by the number of variables
         else if(temp >= Math.pow(2, variables)) {
-            $(".clearfix#dontcares").addClass("error");
-            $(".clearfix#dontcares").removeClass("success");
+            $(".control-group#dontcares").addClass("error");
+            $(".control-group#dontcares").removeClass("success");
             if($.inArray(temp,outofranges_dc) < 0) {
                 outofranges_dc.push(temp);         
             }
@@ -150,8 +150,8 @@ var validationHandler = function (event) {
         }
         // check if minterm is already used in the dontcares
         else if($.inArray(temp, minterms) > -1) {
-            $(".clearfix#dontcares").addClass("error");
-            $(".clearfix#dontcares").removeClass("success");
+            $(".control-group#dontcares").addClass("error");
+            $(".control-group#dontcares").removeClass("success");
             //$(".help-inline#dontcares").append(temp+' is already specified in minterms.\n');
             if($.inArray(temp,duplicates) < 0) {
                 duplicates.push(temp);          
@@ -213,18 +213,18 @@ var validationHandler = function (event) {
         // should not be able to submit until at least one mintern has been specified
         if(minterms[0] === "") { 
             disableSubmit();
-            $(".clearfix#minterms").removeClass("success");
+            $(".control-group#minterms").removeClass("success");
         } else {
             enableSubmit();
-            $(".clearfix#minterms").removeClass("error");
-            $(".clearfix#minterms").addClass("success");
+            $(".control-group#minterms").removeClass("error");
+            $(".control-group#minterms").addClass("success");
         }
         if(dontcares[0] === "") {
             // do nothing for now
-            $(".clearfix#dontcares").removeClass("error");
+            $(".control-group#dontcares").removeClass("error");
         } else {
-            $(".clearfix#dontcares").removeClass("error");
-            $(".clearfix#dontcares").addClass("success");
+            $(".control-group#dontcares").removeClass("error");
+            $(".control-group#dontcares").addClass("success");
         }
     } else {
         disableSubmit();
@@ -267,13 +267,13 @@ var getDuplicatesErrorMessage = function (args) {
     });
     var div = "";
     if(args.length == 1){
-        div = '<div id="alert" class="alert-message error fade in span8" data-alert="alert" >'+
-            '<a class="close" href="#">&times;</a>'+
+        div = '<div id="alert" class="alert alert-block alert-error fade in span8" >'+
+            '<a class="close" data-dismiss="alert">&times;</a>'+
             '<p>'+ args.join(', ') + ' is specified as both a minterm and a don\'t care</p></div>';
     }
     else {
-        div = '<div id="alert" class="alert-message error fade in span8" data-alert="alert" >'+
-            '<a class="close" href="#">&times;</a>'+
+        div = '<div id="alert" class="alert alert-block alert-error fade in span8" >'+
+            '<a class="close" data-dismiss="alert">&times;</a>'+
             '<p>'+ args.join(', ') + ' are specified as both minterms and don\'t cares</p></div>';
     }
     return div;
@@ -302,7 +302,7 @@ $(document).ready(function (){
     $('input#minterms').bind('change focus',validationHandler);
     $('input#dontcares').bind('change focus',validationHandler);
     $('#reset').click(function (){
-        $('.clearfix').removeClass('error success');
+        $('.control-group').removeClass('error success');
         $("#alert-bar").empty();
     });
 });

@@ -10,12 +10,13 @@
 		<script type="text/javascript"src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 		<!--<script type="text/javascript" src="js/min.js">-->
 		<script type="text/javascript" src="js/espresso.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-modal.js"></script>
 		<script type="text/javascript" src="js/bootstrap-alerts.js"></script>	
 	</head>
 	<body onload="prettyPrint()">
 		<div class="topbar">
-		<a href="https://github.com/zmichaelov/espresso"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+        <a href="https://github.com/zmichaelov/espresso"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 		</div><!-- topbar-->
 		<div class="container-fluid">
 		  <div class="content">		  
@@ -28,48 +29,35 @@
 	
 				<div class="span16">
 					<h3>Inputs</h3>
-					<form action="" id="inputForm" method="post">
-						
-						<div class="clearfix" id="variables">
-							<label for="variables"># of variables</label>
-							<div class="input" id="variables">
-								<input id="variables" type="text" class="span2" value=""/>
-								<span class="help-inline" id="variables"></span>
-							</div>
+					<form action="" id="inputForm" method="post" class="">
+						<div class="row show-grid">
+                            <div class="control-group span2" id="variables">
+                                    <label>Variables</label>
+                                    <input id="variables" type="text" class="span2" value="" placeholder="# of variables">
+                            </div>
 						</div>
-						
-						<div class="clearfix" id="minterms">
-							<label for="minterms">Minterms</label>
-							<div class="input">
-								\(f({x}_{1},...,{x}_{n}) = \sum m(\)
-								<input id="minterms" type="text" value=""/>
-								\()+\)
-								<span class="help-inline" id="minterms"></span>
-					
-							</div>
-						</div>
-						<div class="clearfix" id="dontcares">
-							<label for="dontcares">Don't Cares</label>
-							<div class="input">
-								\(D(\)							
-								<input id="dontcares" type="text" value=""/>
-								\()\)
-								<span class="help-inline" id="dontcares"></span>
-							</div>
-						</div>					
 						<div class="row">
-							<div class="span4 offset4">
-								<input id="submit" class="btn primary" disabled="disabled" type="submit" value="Submit" />
-								<button id="reset" class="btn" type="reset">Reset</button>
-							</div>
-						</div>
+                            <div class="control-group 4" id="minterms">
+                                    \(f({x}_{1},...,{x}_{n}) = \sum m(\)
+                                    <input id="minterms" class="span3" type="text" value="" placeholder="Minterms">
+    <!-- 								\()\) -->
+                                    \()+\)
+                            </div>
+    <!--                         <div class="span1">\(+\)</div> -->
+                            <div class="control-group span4" id="dontcares">
+    
+                                    \(D(\)							
+                                    <input id="dontcares" class="span2" type="text" value="" placeholder="Don't Cares">
+                                    \()\)
+                            </div>	
+                        </div>				
+                        <div class="form-actions">
+                            <button id="reset" class="btn pull-right" type="reset">Reset</button>
+                            <input id="submit" class="btn btn-primary pull-right" disabled="disabled" type="submit" value="Submit" />
+                        </div>
+
 					</form>
 				  </div>
-	<!-- 
-				  <div class="span8">
-						<h3>Additional Options</h3>
-				  </div>
-	 -->
 			</div>
 			<div class="row">
 				<div class="span8"><h3>Standard Output</h3>
@@ -79,13 +67,6 @@
 					<div id="latex_rendered"></div>
 				</div>
 			</div>
-<!-- 
-			<div class="row">
-				<div class="span16"><h3>Console</h3>
-					<textarea class="xxlarge" id="console"></textarea>
-				</div>
-			</div>
- -->
 		  </div>
 	
 		<footer>
