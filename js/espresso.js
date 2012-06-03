@@ -53,9 +53,9 @@ var validationHandler = function (event) {
 
     
     // clear all in-line help text
-    $(".help-inline#variables").empty();
-    $(".help-inline#minterms").empty();
-    $(".help-inline#dontcares").empty();
+    $(".help-block#variables").empty();
+    $(".help-block#minterms").empty();
+    $(".help-block#dontcares").empty();
     $("#alert-bar").empty();
     
     /* variables validation */
@@ -63,13 +63,13 @@ var validationHandler = function (event) {
     if (variables) {
         // check if the number of variables is a single integer greater than 0
         if (isInt(variables) && variables > 0) {
-            $(".help-inline#variables").empty();
+            $(".help-block#variables").empty();
             $(".control-group#variables").removeClass("error");
             $(".control-group#variables").addClass("success");
         } else {
             $(".control-group#variables").addClass("error");
             $(".control-group#variables").removeClass("success");
-            $(".help-inline#variables").append('Enter a single integer greater than 0');
+            $(".help-block#variables").append('Enter a single integer greater than 0');
             
             // disable the submit button again          
             var disabled = $('input#submit').attr('disabled');
@@ -95,7 +95,7 @@ var validationHandler = function (event) {
             if($.inArray(temp,invalids) < 0) {
                 invalids.push(temp);            
             }
-//          $(".help-inline#minterms").append('Minterms must be valid integers.\n');
+//          $(".help-block#minterms").append('Minterms must be valid integers.\n');
             allValid = false;
         }
         
@@ -106,7 +106,7 @@ var validationHandler = function (event) {
             if($.inArray(temp,outofranges) < 0) {
                 outofranges.push(temp);         
             }
-            //$(".help-inline#minterms").append(temp+' is out of range.\n');
+            //$(".help-block#minterms").append(temp+' is out of range.\n');
             allValid = false;
         }
         // check if minterm is already used in the dontcares
@@ -152,7 +152,7 @@ var validationHandler = function (event) {
         else if($.inArray(temp, minterms) > -1) {
             $(".control-group#dontcares").addClass("error");
             $(".control-group#dontcares").removeClass("success");
-            //$(".help-inline#dontcares").append(temp+' is already specified in minterms.\n');
+            //$(".help-block#dontcares").append(temp+' is already specified in minterms.\n');
             if($.inArray(temp,duplicates) < 0) {
                 duplicates.push(temp);          
             }
@@ -176,36 +176,36 @@ var validationHandler = function (event) {
     }
     //check for terms that are not valid integers
     if(invalids.length > 0) {
-        $(".help-inline#minterms").append(getInvalidsErrorMessage(invalids));    
+        $(".help-block#minterms").append(getInvalidsErrorMessage(invalids));    
     }
     else {
-        $(".help-inline#minterms").removeClass("invalids");
+        $(".help-block#minterms").removeClass("invalids");
     }
 
     //check for terms that are out of range given the number of inputs
     if(outofranges.length > 0) {
-        $(".help-inline#minterms").append(getRangeErrorMessage(outofranges));    
+        $(".help-block#minterms").append(getRangeErrorMessage(outofranges));    
     }
     else {
-        $(".help-inline#minterms").removeClass("range");
+        $(".help-block#minterms").removeClass("range");
     }
     
     /* Don't Cares Error Messages */
     
     //check for terms that are not valid integers
     if(invalids_dc.length > 0) {
-        $(".help-inline#dontcares").append(getInvalidsErrorMessage(invalids_dc));    
+        $(".help-block#dontcares").append(getInvalidsErrorMessage(invalids_dc));    
     }
     else {
-        $(".help-inline#dontcares").removeClass("invalids");
+        $(".help-block#dontcares").removeClass("invalids");
     }
 
     //check for terms that are out of range given the number of inputs
     if(outofranges_dc.length > 0) {
-        $(".help-inline#dontcares").append(getRangeErrorMessage(outofranges_dc));    
+        $(".help-block#dontcares").append(getRangeErrorMessage(outofranges_dc));    
     }
     else {
-        $(".help-inline#dontcares").removeClass("range");
+        $(".help-block#dontcares").removeClass("range");
     }
     /* Check if everything is ok to submit */
     
